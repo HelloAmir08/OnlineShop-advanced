@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Logged out{% endblock %}
+
+{% block hero %}
+<header class="hero hero-sm">
+  <div class="container text-center">
+    <h1 class="hero-title hero-title-sm">You are logged out</h1>
+    <p class="hero-subtitle">See you again 👋</p>
+  </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<div class="auth-wrap">
+  <div class="card soft-card">
+    <div class="card-body p-4 text-center">
+      <p class="text-muted mb-3">You have successfully logged out.</p>
+      <div class="d-grid gap-2">
+        <a class="btn btn-dark btn-pill" href="#">
+          <i class="bi bi-box-arrow-in-right"></i> Login again
+        </a>
+        <a class="btn btn-outline-dark btn-pill" href="/">
+          <i class="bi bi-house"></i> Back to Home
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% block title %}Contact Us - Online Shop{% endblock %}
+{% block nav_contact_active %}active{% endblock %}
+
+{% block hero %}
+<header class="hero hero-sm">
+  <div class="container text-center">
+    <h1 class="hero-title hero-title-sm">Contact Us</h1>
+    <p class="hero-subtitle">We’d love to hear from you</p>
+  </div>
+</header>
+{% endblock %}
+
+{% block content %}
+
+<div class="row g-4 align-items-stretch">
+
+  <div class="col-12 col-lg-7">
+    <div class="card soft-card h-100">
+      <div class="card-body p-4">
+
+        <h4 class="fw-bold mb-3">Send us a message</h4>
+
+        <form method="POST" action="{% url "contact_us" %}" novalidate>
+            {% csrf_token %}
+          <div class="alert alert-light border mb-3">
+            Fill the form and we will contact you soon.
+          </div>
+
+          <div class="row g-3">
+
+            <div class="col-12 col-md-6">
+              <label class="form-label">First name</label>
+              <input
+                type="text"
+                name="first_name"
+                class="form-control"
+                placeholder="John"
+              >
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label class="form-label">Last name</label>
+              <input
+                type="text"
+                name="second_name"
+                class="form-control"
+                placeholder="Doe"
+              >
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Phone number</label>
+              <input
+                type="tel"
+                name="phone_number"
+                class="form-control"
+                placeholder="+998 XX XXX XX XX"
+              >
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Subject</label>
+              <input
+                type="text"
+                name="subject"
+                class="form-control"
+                placeholder="Order question / Collaboration"
+              >
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Message</label>
+              <textarea
+                class="form-control"
+                rows="5"
+                name="message"
+                placeholder="Write your message here..."
+              ></textarea>
+            </div>
+
+            <div class="col-12 d-grid">
+              <button type="submit" class="btn btn-dark">
+                <i class="bi bi-send"></i> Send message
+              </button>
+            </div>
+
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-5">
+    <div class="card soft-card h-100">
+      <div class="card-body p-4">
+
+        <h4 class="fw-bold mb-3">Contact information</h4>
+
+        <div class="contact-item">
+          <i class="bi bi-geo-alt"></i>
+          <div>
+            <div class="fw-bold">Address</div>
+            <div class="text-muted small">Your City, Your Street 123</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <i class="bi bi-telephone"></i>
+          <div>
+            <div class="fw-bold">Phone</div>
+            <div class="text-muted small">+998 (90) 123-45-67</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <i class="bi bi-envelope"></i>
+          <div>
+            <div class="fw-bold">Email</div>
+            <div class="text-muted small">support@example.com</div>
+          </div>
+        </div>
+
+        <div class="divider my-4"></div>
+
+        <h6 class="fw-bold">Working hours</h6>
+        <div class="text-muted small">
+          Mon – Fri: 9:00 – 18:00<br>
+          Sat – Sun: Closed
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

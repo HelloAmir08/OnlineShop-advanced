@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% block title %}Product Detail - Online Shop{% endblock %}
+
+{% block hero %}
+<header class="hero hero-sm">
+  <div class="container text-center">
+    <h1 class="hero-title hero-title-sm">Accessories</h1>
+    <p class="hero-subtitle">Product details & comments</p>
+  </div>
+</header>
+{% endblock %}
+
+{% block content %}
+
+<div class="mb-3">
+  <a href="/" class="link-dark text-decoration-none small">
+    <i class="bi bi-arrow-left"></i> Back to products
+  </a>
+</div>
+
+<div class="row g-4 align-items-start">
+  <div class="col-12 col-lg-6">
+    <div class="card soft-card p-3">
+      <div class="ratio ratio-4x3 product-image-wrap">
+        <img src="https://placehold.co/800x600/f8f9fa/23272b?text=JUST+Product" class="object-fit-contain" alt="Classic backpack">
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-6">
+    <div class="card soft-card">
+      <div class="card-body p-4">
+        <div class="d-flex align-items-center justify-content-between gap-2 flex-wrap">
+          <span class="badge bg-dark">Sale -15%</span>
+        </div>
+
+        <h2 class="fw-bold mt-2 mb-2">City Backpack</h2>
+
+        <div class="d-flex align-items-baseline gap-2 mb-3">
+          <span class="text-muted text-decoration-line-through">$95</span>
+          <span class="fs-4 fw-bold">$81</span>
+        </div>
+
+        <p class="text-muted mb-4">
+          Lightweight backpack with enough space for everyday shopping, work essentials, and short trips.
+        </p>
+
+        <div class="divider my-4"></div>
+
+        <!-- Add to cart available for everyone -->
+        <form method="get" action="#">
+          <button type="button" class="btn btn-dark w-100 btn-pill">
+            <i class="bi bi-bag me-2"></i>Add to cart
+          </button>
+        </form>
+
+        <div class="small text-muted mt-3">
+          Add this product to your cart and complete the order at checkout.
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4 mt-4 align-items-stretch">
+  <div class="col-12 col-lg-7">
+    <div class="card soft-card h-100">
+      <div class="card-body p-4 d-flex flex-column">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+          <h4 class="fw-bold mb-0">Latest comments</h4>
+        </div>
+
+        <div class="comment">
+          <div class="comment-head">
+            <div class="avatar">
+              <img src="https://placehold.co/80x80/f8f9fa/23272b?text=A" alt="avatar">
+            </div>
+            <div>
+              <div class="fw-bold">Anna Smith</div>
+              <div class="text-muted small">Today</div>
+            </div>
+          </div>
+          <div class="text-muted mt-2">
+            Nice quality and comfortable size for daily use.
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="comment-head">
+            <div class="avatar">
+              <img src="https://placehold.co/80x80/f8f9fa/23272b?text=M" alt="avatar">
+            </div>
+            <div>
+              <div class="fw-bold">Mike Brown</div>
+              <div class="text-muted small">Yesterday</div>
+            </div>
+          </div>
+          <div class="text-muted mt-2">
+            The product page layout is ready for real comments later.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-5">
+    <div class="card soft-card h-100">
+      <div class="card-body p-4 d-flex flex-column">
+        <h4 class="fw-bold mb-3">Add comment</h4>
+
+        <form method="get" action="#" class="d-flex flex-column flex-grow-1" novalidate>
+          <div class="mb-3">
+            <label class="form-label">Your name</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Your name"
+              name="name"
+            >
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Your comment</label>
+            <textarea
+              class="form-control"
+              rows="5"
+              placeholder="Write here..."
+              name="comment"
+            ></textarea>
+          </div>
+
+          <div class="d-grid mt-auto">
+            <button class="btn btn-outline-dark btn-pill" type="submit" name="comment_submit">
+              <i class="bi bi-chat-dots me-2"></i>Send comment
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

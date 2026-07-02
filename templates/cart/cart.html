@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block title %}Cart{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <h2 class="mb-4 fw-bold">Your Cart</h2>
+
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="card soft-card cart-item-card mb-3">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col-md-2 col-4">
+              <div class="cart-product-image d-flex align-items-center justify-content-center">
+                <i class="bi bi-bag fs-2 text-muted"></i>
+              </div>
+            </div>
+
+            <div class="col-md-4 col-8">
+              <h5 class="mb-1">Classic Hoodie</h5>
+              <div class="text-muted small">Price: $60.00</div>
+            </div>
+
+            <div class="col-md-3 col-6 mt-3 mt-md-0">
+              <div class="text-muted small mb-1">Qty</div>
+
+              <div class="d-flex align-items-center gap-2">
+                <button type="button" class="btn btn-sm btn-outline-dark qty-btn" data-product-id="1" data-action="decrease">-</button>
+                <span class="fw-semibold quantity-value" id="quantity-1" data-price="60">1</span>
+                <button type="button" class="btn btn-sm btn-outline-dark qty-btn" data-product-id="1" data-action="increase">+</button>
+              </div>
+            </div>
+
+            <div class="col-md-2 col-3 mt-3 mt-md-0 text-md-end">
+              <div class="fw-bold" id="subtotal-1">$60.00</div>
+            </div>
+
+            <div class="col-md-1 col-3 text-end">
+              <a href="#" class="btn btn-sm btn-outline-danger">
+                <i class="bi bi-x"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card soft-card cart-item-card mb-3">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col-md-2 col-4">
+              <div class="cart-product-image d-flex align-items-center justify-content-center">
+                <i class="bi bi-backpack fs-2 text-muted"></i>
+              </div>
+            </div>
+
+            <div class="col-md-4 col-8">
+              <h5 class="mb-1">City Backpack</h5>
+              <div class="text-muted small">Price: $81.00</div>
+            </div>
+
+            <div class="col-md-3 col-6 mt-3 mt-md-0">
+              <div class="text-muted small mb-1">Qty</div>
+
+              <div class="d-flex align-items-center gap-2">
+                <button type="button" class="btn btn-sm btn-outline-dark qty-btn" data-product-id="2" data-action="decrease">-</button>
+                <span class="fw-semibold quantity-value" id="quantity-2" data-price="81">2</span>
+                <button type="button" class="btn btn-sm btn-outline-dark qty-btn" data-product-id="2" data-action="increase">+</button>
+              </div>
+            </div>
+
+            <div class="col-md-2 col-3 mt-3 mt-md-0 text-md-end">
+              <div class="fw-bold" id="subtotal-2">$162.00</div>
+            </div>
+
+            <div class="col-md-1 col-3 text-end">
+              <a href="#" class="btn btn-sm btn-outline-danger">
+                <i class="bi bi-x"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card soft-card cart-summary-card">
+        <div class="card-body p-4">
+          <h5 class="fw-bold mb-3">Order Summary</h5>
+
+          <div class="d-flex justify-content-between mb-2">
+            <span class="text-muted">Items</span>
+            <span id="cart-items-count">3</span>
+          </div>
+
+          <div class="d-flex justify-content-between mb-3">
+            <span class="text-muted">Total</span>
+            <span class="fw-bold" id="cart-total">$222.00</span>
+          </div>
+
+          <a href="#" class="btn btn-dark w-100 btn-pill">
+            Order now
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const buttons = document.querySelectorAll('.qty-btn');
+  const cartTotalEl = document.getElementById('cart-total');
+  const cartItemsCountEl = document.getElementById('cart-items-count');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', function () {
+      const productId = this.dataset.productId;
+      const action = this.dataset.action;
+      const quantityEl = document.getElementById(`quantity-${productId}`);
+      const subtotalEl = document.getElementById(`subtotal-${productId}`);
+      const price = parseFloat(quantityEl.dataset.price);
+      let quantity = parseInt(quantityEl.textContent.trim(), 10);
+
+      if (action === 'increase') {
+        quantity += 1;
+      }
+
+      if (action === 'decrease' && quantity > 1) {
+        quantity -= 1;
+      }
+
+      quantityEl.textContent = quantity;
+      subtotalEl.textContent = `$${(price * quantity).toFixed(2)}`;
+      recalculateCart();
+    });
+  });
+
+  function recalculateCart() {
+    let total = 0;
+    let count = 0;
+
+    document.querySelectorAll('.quantity-value').forEach(el => {
+      const quantity = parseInt(el.textContent.trim(), 10) || 0;
+      const price = parseFloat(el.dataset.price) || 0;
+      count += quantity;
+      total += quantity * price;
+    });
+
+    cartItemsCountEl.textContent = count;
+    cartTotalEl.textContent = `$${total.toFixed(2)}`;
+  }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}About - Online Shop{% endblock %}
+{% block nav_about_active %}active{% endblock %}
+
+{% block hero %}
+<header class="hero">
+  <div class="container text-center">
+    <h1 class="hero-title">About JUST</h1>
+    <p class="hero-subtitle">Trendy items • clean UI • real discounts</p>
+  </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<div class="row g-4 align-items-stretch">
+  <div class="col-12 col-lg-7">
+    <div class="card soft-card h-100">
+      <div class="card-body p-4">
+        <h2 class="section-title">Who we are</h2>
+        <p class="text-muted">
+          JUST — онлайн-магазин с фокусом на простоту, красивую витрину и честные скидки.
+          Мы делаем интерфейс лёгким, чтобы покупка занимала меньше времени.
+        </p>
+
+        <h3 class="section-subtitle">What you get</h3>
+        <ul class="text-muted mb-0">
+          <li>Аккуратные карточки товаров + быстрый просмотр</li>
+          <li>Скидка в процентах и цена со скидкой</li>
+          <li>Адаптивный дизайн под телефон</li>
+          <li>Страница товара с быстрым заказом</li>
+        </ul>
+
+        <div class="mt-4 d-flex gap-2 flex-wrap">
+          <a href="/" class="btn btn-dark btn-sm px-3">
+            <i class="bi bi-bag"></i> View products
+          </a>
+          <a href="#contacts" class="btn btn-outline-dark btn-sm px-3">
+            <i class="bi bi-envelope"></i> Contact
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-5">
+    <div class="card soft-card h-100">
+      <div class="card-body p-4">
+        <h2 class="section-title">Why choose us</h2>
+
+        <div class="feature">
+          <div class="feature-title"><i class="bi bi-percent"></i> Real discounts</div>
+          <div class="feature-text text-muted">Считаем скидку автоматически и показываем цену аккуратно.</div>
+        </div>
+
+        <div class="feature">
+          <div class="feature-title"><i class="bi bi-phone"></i> Mobile friendly</div>
+          <div class="feature-text text-muted">Нормально выглядит на телефоне и планшете.</div>
+        </div>
+
+        <div class="feature">
+          <div class="feature-title"><i class="bi bi-lightning"></i> Fast UX</div>
+          <div class="feature-text text-muted">Минимум лишнего — максимум понятности.</div>
+        </div>
+
+        <div class="divider my-4"></div>
+
+        <div id="contacts" class="small text-muted">
+          <div class="fw-bold text-dark mb-2">Contacts</div>
+          <div><i class="bi bi-geo-alt"></i> Your city</div>
+          <div><i class="bi bi-telephone"></i> +7 (000) 000-00-00</div>
+          <div><i class="bi bi-envelope"></i> example@mail.com</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

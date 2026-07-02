@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block title %}Register - Online Shop{% endblock %}
+
+{% block hero %}
+<header class="hero hero-sm">
+  <div class="container text-center">
+    <h1 class="hero-title hero-title-sm">Create account</h1>
+    <p class="hero-subtitle">Join JUST and shop faster</p>
+  </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<div class="auth-wrap">
+  <div class="card soft-card">
+    <div class="card-body p-4">
+
+      <h3 class="auth-title">Sign up</h3>
+      <div class="auth-subtitle">Fill the fields below</div>
+
+      <form method="get" action="#">
+
+        <div class="mt-3">
+          <label class="form-label">First name</label>
+          <input
+            type="text"
+            name="first_name"
+            class="form-control"
+            placeholder="First name"
+            required
+          >
+        </div>
+
+        <div class="mt-3">
+          <label class="form-label">Last name</label>
+          <input
+            type="text"
+            name="last_name"
+            class="form-control"
+            placeholder="Last name"
+            required
+          >
+        </div>
+
+        <div class="mt-3">
+          <label class="form-label">Phone number</label>
+          <input
+            type="tel"
+            name="phone_number"
+            class="form-control"
+            placeholder="+998 90 123 45 67"
+            required
+          >
+        </div>
+
+        <div class="row g-3 mt-1">
+          <div class="col-12 col-md-6">
+            <label class="form-label">Password</label>
+            <input
+              type="password"
+              name="password1"
+              class="form-control"
+              placeholder="••••••••"
+              required
+            >
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label">Repeat password</label>
+            <input
+              type="password"
+              name="password2"
+              class="form-control"
+              placeholder="••••••••"
+              required
+            >
+          </div>
+        </div>
+
+        <div class="form-check mt-3">
+          <input class="form-check-input" type="checkbox" id="agree" required>
+          <label class="form-check-label small text-muted" for="agree">
+            I agree to the terms and privacy policy
+          </label>
+        </div>
+
+        <div class="d-grid mt-4">
+          <button class="btn btn-dark btn-pill" type="submit">
+            <i class="bi bi-check2-circle"></i> Create account
+          </button>
+        </div>
+
+        <div class="text-center small text-muted mt-3">
+          Already have an account?
+          <a class="helper-link" href="#">Login</a>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

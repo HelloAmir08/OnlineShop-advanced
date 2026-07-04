@@ -6,6 +6,7 @@ from apps.core.models import BaseModel
 from .managers import UserManager
 
 class User(AbstractUser):
+    username = None
     phone_number = PhoneNumberField(
         region = "UZ",
         unique = True

@@ -67,44 +67,86 @@
       </ul>
 
       <!-- Right side -->
-<div class="d-flex align-items-center gap-3">
+      <div class="d-flex align-items-center gap-3">
 
-  <!-- Search -->
-  <form class="d-flex gap-2" role="search" method="get" action="/">
-    <div class="input-group input-group-sm">
-      <span class="input-group-text bg-white">
-        <i class="bi bi-search"></i>
-      </span>
+        <!-- Search -->
+        <form class="d-flex gap-2" role="search" method="get" action="/">
+          <div class="input-group input-group-sm">
+            <span class="input-group-text bg-white">
+              <i class="bi bi-search"></i>
+            </span>
 
-      <input class="form-control"
-             type="search"
-             name="q"
-             placeholder="Search products..."
-             value="">
-    </div>
+            <input class="form-control"
+                   type="search"
+                   name="q"
+                   placeholder="Search products..."
+                   value="">
+          </div>
 
-    <button class="btn btn-dark btn-sm" type="submit">
-      Search
-    </button>
-  </form>
+          <button class="btn btn-dark btn-sm" type="submit">
+            Search
+          </button>
+        </form>
 
-  <!-- Cart -->
-  <a href="#" class="cart-nav-link" aria-label="Cart">
-    <span class="cart-icon-wrap">
-      <i class="bi bi-bag"></i>
-    </span>
-  </a>
+        <!-- Cart -->
+        <a href="#" class="cart-nav-link" aria-label="Cart">
+          <span class="cart-icon-wrap">
+            <i class="bi bi-bag"></i>
+          </span>
+        </a>
 
-  <div class="d-flex gap-2">
-    <a class="btn btn-outline-dark btn-sm" href="#">
-      Login
-    </a>
-    <a class="btn btn-dark btn-sm" href="#">
-      Sign up
-    </a>
-  </div>
+        {% if user.is_authenticated %}
+          <div class="dropdown user-menu">
+            <button class="user-avatar-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Account menu">
+              <span class="nav-avatar nav-avatar-icon">
+                <i class="bi bi-person"></i>
+              </span>
+            </button>
 
-</div>
+            <ul class="dropdown-menu dropdown-menu-end user-dropdown shadow-sm">
+              <li class="dropdown-user-info">
+                <div class="dropdown-user-name">
+                  {% if user.get_full_name %}
+                    {{ user.get_full_name }}
+                  {% else %}
+                    {{ user.phone_number }}
+                  {% endif %}
+                </div>
+                <div class="dropdown-user-email">
+                  {% if user.email %}{{ user.email }}{% else %}{{ user.phone_number }}{% endif %}
+                </div>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <a class="dropdown-item" href="{% url 'profile' %}">
+                  <i class="bi bi-person-circle me-2"></i> Profile
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'profile_edit' %}">
+                  <i class="bi bi-pencil-square me-2"></i> Edit profile
+                </a>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <a class="dropdown-item" href="{% url 'logout' %}">
+                  <i class="bi bi-box-arrow-right me-2"></i> Logout
+                </a>
+              </li>
+            </ul>
+          </div>
+        {% else %}
+          <div class="d-flex gap-2">
+            <a class="btn btn-outline-dark btn-sm" href="{% url 'login' %}">
+              Login
+            </a>
+            <a class="btn btn-dark btn-sm" href="{% url 'registration' %}">
+              Sign up
+            </a>
+          </div>
+        {% endif %}
+
+      </div>
 
     </div>
   </div>

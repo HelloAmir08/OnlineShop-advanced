@@ -1,22 +1,107 @@
 {% extends "base.html" %}
+{% block title %}Profile - Online Shop{% endblock %}
+
+{% block hero %}
+<header class="hero hero-sm">
+  <div class="container text-center">
+    <h1 class="hero-title hero-title-sm">Profile</h1>
+    <p class="hero-subtitle">Your account details and delivery information</p>
+  </div>
+</header>
+{% endblock %}
 
 {% block content %}
+<div class="row g-4 align-items-start">
+  <div class="col-12 col-lg-4">
+    <div class="card soft-card">
+      <div class="card-body p-4 text-center">
+        <div class="profile-avatar profile-avatar-lg mb-3">
+          {% if profile.avatar %}
+            <img src="{{ profile.avatar.url }}" alt="Profile avatar">
+          {% else %}
+            <div class="profile-avatar-fallback">
+              <i class="bi bi-person"></i>
+            </div>
+          {% endif %}
+        </div>
 
-<div class="container mt-5">
+        <h3 class="profile-name mb-1">
+          {% if user.get_full_name %}
+            {{ user.get_full_name }}
+          {% else %}
+            {{ user.phone_number }}
+          {% endif %}
+        </h3>
+        <p class="text-muted small mb-0">
+          {% if user.email %}{{ user.email }}{% else %}No email added{% endif %}
+        </p>
 
-<div class="card p-4 text-center">
+        <div class="d-grid gap-2 mt-4">
+          <a class="btn btn-dark btn-pill" href="{% url 'profile_edit' %}">
+            <i class="bi bi-pencil-square"></i> Edit profile
+          </a>
+          <a class="btn btn-outline-dark btn-pill" href="{% url 'password_change' %}">
+            <i class="bi bi-shield-lock"></i> Change password
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div class="profile-avatar mb-3">
-<div class="w-100 h-100 d-flex align-items-center justify-content-center bg-light">
-<i class="bi bi-person display-4 text-muted"></i>
+  <div class="col-12 col-lg-8">
+    <div class="card soft-card">
+      <div class="card-body p-4">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+          <div>
+            <h3 class="section-title mb-1">Account details</h3>
+            <p class="auth-subtitle mb-0">Personal information saved in your account</p>
+          </div>
+          <span class="badge text-bg-light border">
+            <i class="bi bi-check-circle"></i> Active
+          </span>
+        </div>
+
+        <div class="profile-info-grid mt-4">
+          <div class="profile-info-item">
+            <span class="profile-info-label">Phone number</span>
+            <strong>{{ user.phone_number }}</strong>
+          </div>
+          <div class="profile-info-item">
+            <span class="profile-info-label">Email</span>
+            <strong>{% if user.email %}{{ user.email }}{% else %}Not set{% endif %}</strong>
+          </div>
+          <div class="profile-info-item">
+            <span class="profile-info-label">First name</span>
+            <strong>{% if user.first_name %}{{ user.first_name }}{% else %}Not set{% endif %}</strong>
+          </div>
+          <div class="profile-info-item">
+            <span class="profile-info-label">Last name</span>
+            <strong>{% if user.last_name %}{{ user.last_name }}{% else %}Not set{% endif %}</strong>
+          </div>
+          <div class="profile-info-item">
+            <span class="profile-info-label">Birthday</span>
+            <strong>{% if profile.birthday %}{{ profile.birthday|date:"M d, Y" }}{% else %}Not set{% endif %}</strong>
+          </div>
+          <div class="profile-info-item">
+            <span class="profile-info-label">Joined</span>
+            <strong>{{ user.date_joined|date:"M d, Y" }}</strong>
+          </div>
+        </div>
+
+        <div class="divider my-4"></div>
+
+        <div>
+          <h4 class="section-subtitle mt-0">Delivery address</h4>
+          <p class="profile-address mb-0">
+            {% if profile.address %}
+              {{ profile.address|linebreaksbr }}
+            {% else %}
+              No address added yet.
+            {% endif %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-
-<h3>Demo User</h3>
-<p class="text-muted">demo@example.com</p>
-
-</div>
-
-</div>
-
 {% endblock %}

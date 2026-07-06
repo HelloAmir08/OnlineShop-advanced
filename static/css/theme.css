@@ -81,11 +81,6 @@
   align-items: center;
   justify-content: center;
 }
-.product-thumb img{
-  max-height: 170px;
-  width: auto;
-  object-fit: contain;
-}
 
 .price{ letter-spacing: -0.2px; }
 
@@ -96,9 +91,17 @@
   overflow: hidden;
 }
 
-.product-image-wrap img{
-  width: 100%;
-  height: 100%;
+.product-image-wrap {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.product-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .feature{ padding: 10px 0; }

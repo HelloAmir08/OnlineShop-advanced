@@ -88,10 +88,6 @@ class ProductImage(BaseModel):
         related_name='images'
     )
 
-
-    def get_absolute_url(self):
-        return self.image.url
-
     def __str__(self):
         return f"Image of {self.product.name}"
 

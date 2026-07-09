@@ -17,7 +17,7 @@ def register_view(request):
             get_user_profile(user)
             login(request, user)
             print(f'user {user.phone_number} has successfully signed up')
-            return redirect('homepage')
+            return redirect('home')
         print('An error occurred')
     else:
         form = RegisterForm()
@@ -40,7 +40,7 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 print(f'user {phone_number} has successfully signed in')
-                return redirect('homepage')
+                return redirect('home')
 
             form.add_error(None, 'Invalid phone number or password')
         print('An error occurred')
@@ -53,7 +53,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     print('user logged out')
-    return redirect('homepage')
+    return redirect('home')
 
 @login_required
 def profile_view(request):

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Category, SubCategory, Product
 from .forms import ReviewForm
+from django.core.paginator import Paginator
 
 
 def homepage_view(request):
@@ -29,6 +30,10 @@ def homepage_view(request):
     elif sort == 'cheap':
         products = products.order_by('price')
 
+    paginator = Paginator(products, 8)
+    page_number = request.GET.get('page')
+    products = paginator.get_page(page_number)
+
     context = {
         'products': products,
         'categories': categories,
@@ -41,10 +46,13 @@ def homepage_view(request):
 
 def product_detail_view(request, pk):
     product = get_object_or_404(
-        Product.objects.prefetch_related("images", "reviews"),
+        Product.objects.prefetch_related("images"),
         pk=pk,
     )
     reviews = product.reviews.order_by('-created_at')
+    paginator = Paginator(reviews, 3)
+    page_number = request.GET.get('page')
+    reviews = paginator.get_page(page_number)
     if request.method == 'POST':
         form = ReviewForm(request.POST, user=request.user)
         if form.is_valid():
@@ -55,7 +63,7 @@ def product_detail_view(request, pk):
                 review.user = request.user
 
             review.save()
-            return redirect('product_details', pk=pk)
+            return redirect('product_detail', pk=pk)
     else:
         form = ReviewForm(user=request.user)
 
